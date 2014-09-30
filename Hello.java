@@ -7,28 +7,29 @@ public class Hello {
 
   public void execute(){
   	FooCLass foo = new FooCLass();
-  	foo.addNumber(new Integer(1));
-  	foo.addNumber(new Integer(2));
-  	foo.addNumber(new Integer(3));
-  	foo.addNumber(new Integer(4));
-  	for (Integer number : foo.getNumbers()) {
-  		System.out.println(number.toString());
+  	foo.addMessage("h");
+  	foo.addMessage("e");
+  	foo.addMessage("l");
+  	foo.addMessage("l");
+  	foo.addMessage("o");
+  	for (String string : foo.getMessage()) {
+  		System.out.println(string);
   	}
-    System.out.println("hello, world!");
+    System.out.println("world!");
   }
 
   public class FooCLass{
-  	private ArrayList<Integer> list;
+  	private ArrayList<String> list;
 
   	public FooCLass(){
   		this.list = new ArrayList<>();
   	}
 
-  	public void addNumber(Integer number){
-  		list.add(number);
+  	public void addMessage(String string){
+  		list.add(string);
   	}
 
-  	public List<Integer> getNumbers(){
+  	public List<String> getMessage(){
   		return list;
   	}
   }

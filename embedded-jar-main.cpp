@@ -30,9 +30,15 @@ extern "C" {
 
 extern "C" void __cxa_pure_virtual(void) { abort(); }
 
-int
-main(int ac, const char** av)
-{
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+EXPORT void emptyMethod(){
+  printf("this is an empty mehtod\n");
+}
+
+EXPORT int start(int ac, const char** av) {
   JavaVMInitArgs vmArgs;
   vmArgs.version = JNI_VERSION_1_2;
   vmArgs.nOptions = 1;
@@ -76,3 +82,13 @@ main(int ac, const char** av)
 
   return exitCode;
 }
+
+int main(int argc, char const *argv[])
+{
+  return start(argc, argv);
+}
+
+
+#ifdef __cplusplus
+  }
+#endif
