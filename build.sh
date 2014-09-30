@@ -1,4 +1,8 @@
 #!/bin/bash
+rm *.o
+rm boot.jar
+rm *.class
+
 
 echo "############## compiling ############"
 rm boot.jar
@@ -10,6 +14,8 @@ jar u0f boot.jar *.class
 
 g++ -fno-exceptions -fno-rtti -I"$JAVA_HOME/include" -I"$JAVA_HOME/include/darwin" -D_JNI_IMPLEMENTATION_ -c embedded-jar-main.cpp -o main.o
 
-g++ -rdynamic *.o libavian/*.o -ldl -lpthread -lz -o hello -framework CoreFoundation
+g++ -rdynamic *.o libavian/*.o -ldl -lpthread -lz -shared -o libhello.dylib -framework CoreFoundation
 
-./hello
+javac -classpath jna.jar EmbeddedAppLoader.java LibraryInterface.java
+
+java -cp .:jna.jar EmbeddedAppLoader
