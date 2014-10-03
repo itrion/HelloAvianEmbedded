@@ -8,25 +8,6 @@
 #  define EXPORT __attribute__ ((visibility("default")))   __attribute__ ((used))
 #endif
 
-#if (! defined __x86_64__) && ((defined __MINGW32__) || (defined _MSC_VER))
-#  define SYMBOL(x) binary_boot_jar_##x
-#else
-#  define SYMBOL(x) _binary_boot_jar_##x
-#endif
-
-extern "C" {
-
-  extern const uint8_t SYMBOL(start)[];
-  extern const uint8_t SYMBOL(end)[];
-
-  EXPORT const uint8_t*
-  bootJar(unsigned* size)
-  {
-    *size = SYMBOL(end) - SYMBOL(start);
-    return SYMBOL(start);
-  }
-
-} // extern "C"
 
 extern "C" void __cxa_pure_virtual(void) { abort(); }
 
@@ -47,7 +28,7 @@ EXPORT int start(int ac, const char** av) {
   JavaVMOption options[vmArgs.nOptions];
   vmArgs.options = options;
 
-  options[0].optionString = const_cast<char*>("-Xbootclasspath:[bootJar]");
+  options[0].optionString = const_cast<char*>("-Xbootclasspath:boot.jar");
 
   JavaVM* vm;
   void* env;
