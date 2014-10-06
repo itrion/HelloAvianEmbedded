@@ -27,7 +27,7 @@ g++ -rdynamic *.o libavian/*.o -lpthread -ldl -lz -shared -o libhello.dylib -fra
 echo
 echo "#################### EmbeddedAppLoader.cpp ########################"
 echo
-g++ EmbeddedAppLoader.cpp -o EmbeddedAppLoader -ldl && ./EmbeddedAppLoader
+g++ EmbeddedAppLoader.cpp -o EmbeddedAppLoader && ./EmbeddedAppLoader
 
 
 echo

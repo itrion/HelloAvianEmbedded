@@ -29,7 +29,7 @@ extern "C" {
 } // extern "C"
 
 
-extern "C" void __cxa_pure_virtual(void) { abort(); }
+//extern "C" void __cxa_pure_virtual(void) { abort(); }
 
 #ifdef __cplusplus
 extern "C" {
@@ -42,13 +42,14 @@ EXPORT void emptyMethod(){
 EXPORT int start(int ac, const char** av) {
   JavaVMInitArgs vmArgs;
   vmArgs.version = JNI_VERSION_1_2;
-  vmArgs.nOptions = 1;
+  vmArgs.nOptions = 2;
   vmArgs.ignoreUnrecognized = JNI_TRUE;
 
   JavaVMOption options[vmArgs.nOptions];
   vmArgs.options = options;
 
   options[0].optionString = const_cast<char*>("-Xbootclasspath:[bootJar]:boot.jar");
+  options[1].optionString = const_cast<char*>("-Davian.bootstrap=hello");
 
   JavaVM* vm;
   void* env;

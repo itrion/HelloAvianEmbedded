@@ -6,12 +6,14 @@ public class Hello {
   }
 
   public void execute(){
-  	FooCLass foo = new FooCLass();
-  	foo.addMessage("h");
-  	foo.addMessage("e");
-  	foo.addMessage("l");
-  	foo.addMessage("l");
-  	foo.addMessage("o");
+    int three = 1 + 2;
+    double five = java.lang.Math.sqrt(25);
+    FooCLass foo = new FooCLass();
+  	foo.add("h");
+  	foo.add("e");
+  	foo.add("l");
+  	foo.add("l");
+  	foo.add("o");
   	for (String string : foo.getMessage()) {
   		System.out.println(string);
   	}
@@ -25,7 +27,7 @@ public class Hello {
   		this.list = new ArrayList<>();
   	}
 
-  	public void addMessage(String string){
+  	public void add(String string){
   		list.add(string);
   	}
 
