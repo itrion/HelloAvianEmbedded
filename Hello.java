@@ -5,6 +5,10 @@ public class Hello {
   	new Hello().execute();
   }
 
+  public Hello(){
+    System.out.println(new FooCLass().toString());
+  }
+
   public void execute(){
     int three = 1 + 2;
     double five = java.lang.Math.sqrt(25);
