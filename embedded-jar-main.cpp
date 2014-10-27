@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#if (defined __MINGW32__) || (defined _MSC_VER) || (defined __WIN32__)
+#if (defined __MINGW32__) || (defined _MSC_VER) || (defined __WIN32)
   #define EXPORT __declspec(dllexport)
 #else
   #define EXPORT __attribute__ ((visibility("default")))   __attribute__ ((used))
@@ -20,14 +20,13 @@ extern "C" {
 
   EXPORT int start(int ac, const char** av) {
     JavaVMInitArgs vmArgs;
-    vmArgs.version = JNI_VERSION_1_2;
+    vmArgs.version = JNI_VERSION_1_6;
     vmArgs.nOptions = 2;
     vmArgs.ignoreUnrecognized = JNI_TRUE;
     JavaVMOption options[vmArgs.nOptions];
     vmArgs.options = options;
-
     options[0].optionString = const_cast<char*>("-Xbootclasspath:boot.jar");
-    options[1].optionString = const_cast<char*>("-Davian.bootstrap=libhello.dll");
+    options[1].optionString = const_cast<char*>("-Davian.bootstrap=libhello.so");
     JavaVM* vm;
     void* env;
     printf("about to create the VM\n");
