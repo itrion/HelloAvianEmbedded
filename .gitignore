@@ -1,5 +1,4 @@
 boot.jar
-*.o
 *.class
 *.dylib
 hello
